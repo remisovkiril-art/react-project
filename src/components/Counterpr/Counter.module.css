@@ -1,0 +1,11 @@
+.counter {
+    color: purple;
+}
+.red {
+    color: red;
+    font-size: 28px;
+}
+.off {
+    color: gray;
+    border-color: lightgray;
+}
