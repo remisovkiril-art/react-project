@@ -41,7 +41,7 @@ function App() {
 
 export default App;*/
 
-import Person from "./homework2/Person";
+/*import Person from "./homework2/Person";
 
 function App() {
     return (
@@ -53,6 +53,19 @@ function App() {
             skills="React, TypeScript"
             photo="https://picsum.photos/250"
         />
+    );
+}
+
+export default App;*/
+
+
+import Homework3 from "./homework3/Homework3";
+
+function App() {
+    return (
+        <>
+            <Homework3 />
+        </>
     );
 }
 
