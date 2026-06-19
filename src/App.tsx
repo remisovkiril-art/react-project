@@ -1,16 +1,33 @@
-/*import './App.css'
-import Button from "./ui/Button";
-
+import { useRef } from 'react';
+import './App.css';
 function App() {
-    return (
+    const nameRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
+    const handleFocusEmail = () => {
+        emailRef.current?.focus();
+    };
+    const handleClearFields = () => {
+        if (nameRef.current && emailRef.current) {
+            nameRef.current.value = "";
+            emailRef.current.value = "";
+        }
+    };
+    return(
         <>
-            <Button text="Click me" />
+            <div>
+                <label>Поле Ім'я: </label>
+                <input ref={nameRef} type="text" />
+            </div>
+            <div>
+                <label>Поле Email: </label>
+                <input ref={emailRef} type="email" />
+            </div>
+            <button onClick={handleFocusEmail}>Перейти к Email</button>
+            <button onClick={handleClearFields}>Очистить все поля</button>
         </>
     );
 }
-
 export default App;
-*/
 
 
 /*import Homework1 from "./homework1/Homework1.tsx";
@@ -59,7 +76,7 @@ function App() {
 export default App;*/
 
 
-import Homework3 from "./homework3/Homework3";
+/*import Homework3 from "./homework3/Homework3";
 
 function App() {
     return (
@@ -69,4 +86,4 @@ function App() {
     );
 }
 
-export default App;
+export default App;*/
