@@ -1,37 +1,55 @@
 import ProductCard from "./ProductCard";
+import Search from "./ui/Search";
+import { useSearch } from "../hooks/useSearch";
 import type { ProductType } from "./types/ProductType";
 
 const Homework3 = () => {
+    const { searchQuery } = useSearch();
     const products: ProductType[] = [
         {
             id: 1,
-            title: "Esperanza EH187K Black",
-            price: 229,
-            discount: 5,
-            image: "https://i.allo.ua/media/catalog/product/cache/3/image/524x494/602f0fa2c1f0d1ba5e241f914e856ff9/import/7282116923975619.webp"
+            title: "Смарт-годинник DMI Watch 6 Чорний",
+            price: 12999,
+            discount: 0,
+            image: "DMI Watch 6.png"
         },
         {
             id: 2,
-            title: "Canyon GTWS2 Orange",
-            price: 549,
-            discount: 10,
-            image: "https://i.allo.ua/media/catalog/product/cache/3/image/524x494/602f0fa2c1f0d1ba5e241f914e856ff9/c/n/cnd-gtws2o_.webp"
+            title: "Годинник Xiaomi Watch S1 Чорний",
+            price: 5999,
+            discount: 5,
+            image: "Xiaomi Watch S1.png"
+        },
+        {
+            id: 3,
+            title: "Apple Watch SE 2 GPS 40mm Starlight",
+            price: 13899,
+            discount: 5,
+            image: "Apple Watch SE 2 GPS 40mm Starlight.png"
         }
     ];
 
+    const filteredProducts = products.filter(product =>
+        product.title.toLowerCase().includes(searchQuery)
+    );
+
     return (
         <>
-            <h1>Wireless Earbuds</h1>
-            {
-                products.map(product =>
+            <h1>Пошук продуктів</h1>
+            <Search />
+
+            {filteredProducts.length === 0 ? (
+                <p>Нічого не знайдено</p>
+            ) : (
+                filteredProducts.map(product =>
                     <ProductCard
                         key={product.id}
                         product={product}
                     />
                 )
-            }
+            )}
         </>
     );
-}
+};
 
 export default Homework3;

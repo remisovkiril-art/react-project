@@ -77,12 +77,13 @@ export default App;*/
 
 
 import Homework3 from "./homework3/Homework3";
+import { SearchProvider } from "./homework3/context/SearchContext";
 
 function App() {
     return (
-        <>
+        <SearchProvider>
             <Homework3 />
-        </>
+        </SearchProvider>
     );
 }
 
