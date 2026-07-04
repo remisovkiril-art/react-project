@@ -1,5 +1,6 @@
 import ProductCard from "./ProductCard";
 import type { ProductType } from "./types/ProductType";
+
 const Homework3 = () => {
     const products: ProductType[] = [
         {
@@ -17,6 +18,7 @@ const Homework3 = () => {
             image: "https://i.allo.ua/media/catalog/product/cache/3/image/524x494/602f0fa2c1f0d1ba5e241f914e856ff9/c/n/cnd-gtws2o_.webp"
         }
     ];
+
     return (
         <>
             <h1>Wireless Earbuds</h1>
@@ -31,4 +33,5 @@ const Homework3 = () => {
         </>
     );
 }
+
 export default Homework3;

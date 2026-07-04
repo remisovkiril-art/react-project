@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+{/*import { useRef } from 'react';
 import './App.css';
 function App() {
     const nameRef = useRef<HTMLInputElement>(null);
@@ -27,7 +27,7 @@ function App() {
         </>
     );
 }
-export default App;
+export default App;*/}
 
 
 /*import Homework1 from "./homework1/Homework1.tsx";
@@ -76,7 +76,7 @@ function App() {
 export default App;*/
 
 
-/*import Homework3 from "./homework3/Homework3";
+import Homework3 from "./homework3/Homework3";
 
 function App() {
     return (
@@ -86,4 +86,6 @@ function App() {
     );
 }
 
-export default App;*/
+export default App;
+
+
