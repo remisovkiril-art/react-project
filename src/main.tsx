@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom/client";
+{/*import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "react-router";
 import { routes } from "./routes";
@@ -8,4 +8,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ProductsProvider>
         <RouterProvider router={routes} />
     </ProductsProvider>
+);
+*/}
+
+
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+    <App />
 );
