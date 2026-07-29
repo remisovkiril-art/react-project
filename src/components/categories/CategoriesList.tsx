@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { CategoryType } from "@/types/CategoryType";
-import Category from "./Category2";
+import Category from "./Category";
 
 const CategoriesList = () => {
     const [categories, setCategories] = useState<CategoryType[]>([]);
@@ -54,6 +54,5 @@ const CategoriesList = () => {
         </section>
     );
 };
-
 
 export default CategoriesList;

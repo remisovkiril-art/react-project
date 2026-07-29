@@ -1,5 +1,4 @@
-import type {ProductType} from "../types/ProductType.ts";
-
+import type { ProductType } from "../../types/ProductType";
 
 const Product = (prop:{product:ProductType})=>{
     const{id, title, image,is_active,id_category,count, price} = prop.product;

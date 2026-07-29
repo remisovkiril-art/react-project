@@ -1,5 +1,5 @@
 import Product from "./Product.tsx";
-import type {ProductType} from "../types/ProductType.ts";
+import type { ProductType } from "../../types/ProductType";
 type ProductsProps = {
     products: ProductType[];
 }

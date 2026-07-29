@@ -1,4 +1,5 @@
-import type {ProductType} from "../types/ProductType.ts";
+import type { ProductType } from "../../types/ProductType";
+
 import {type ChangeEvent, type SubmitEvent, useState} from "react";
 
 type CreateProductProps = {

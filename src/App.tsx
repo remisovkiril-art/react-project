@@ -1,24 +1,25 @@
-{/*import CategoriesList from "@/components/layout/CategoriesList";
+//import CategoriesList from "./components/categories/CategoriesList";
+
 
 function App() {
     return (
         <>
-            <CategoriesList />
+            {/*<CategoriesList />*/}
         </>
     );
 }
 
-export default App;*/}
+export default App;
 
 
 
-import Homework4 from "./homework4/Homework4";
+{/*import Homework4 from "./homework4/Homework4";
 
 const App = () => {
     return <Homework4 />;
 };
 
-export default App;
+export default App;*/}
 
 
 

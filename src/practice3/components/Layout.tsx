@@ -1,11 +1,11 @@
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom"; // Строго -dom на конце!
 import Menu from "./Menu";
 
 const Layout = () => {
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div>
             <Menu />
-            <main className="container mx-auto px-4 pb-12">
+            <main>
                 <Outlet />
             </main>
         </div>

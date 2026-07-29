@@ -1,4 +1,3 @@
-
 const Menu = () => {
     return (
         <nav style={{ padding: "10px", borderBottom: "1px solid #ccc", display: "flex", gap: "10px" }}>

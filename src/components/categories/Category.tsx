@@ -1,4 +1,3 @@
-
 import type { CategoryType } from "@/types/CategoryType";
 
 type CategoryProps = {

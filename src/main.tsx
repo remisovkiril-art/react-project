@@ -13,9 +13,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 
 import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import { routes } from "./routes";
+import { ProductsProvider } from "./context/ProductsProvider";
 import "./index.css";
-import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <App />
+    <ProductsProvider>
+        <RouterProvider router={routes} />
+    </ProductsProvider>
 );
