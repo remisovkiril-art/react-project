@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import type { CategoryType } from "@/types/CategoryType";
+import type { CategoryType } from "../../types/CategoryType";
 import Category from "./Category";
 
 const CategoriesList = () => {
     const [categories, setCategories] = useState<CategoryType[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 3;
 
     useEffect(() => {
         const loadCategories = async () => {
@@ -20,8 +23,7 @@ const CategoriesList = () => {
 
                 const data: CategoryType[] = await response.json();
                 setCategories(data);
-            } catch (error) {
-                console.error(error);
+            } catch {
                 setError("Не удалось загрузить категории, проверьте, запущен ли сервер");
             } finally {
                 setIsLoading(false);
@@ -32,24 +34,49 @@ const CategoriesList = () => {
     }, []);
 
     if (isLoading) {
-        return <p className="p-6 text-center text-gray-500">Загрузка категорий...</p>;
+        return <p>Загрузка категорий...</p>;
     }
 
     if (error) {
-        return <p className="p-6 text-center text-red-500">{error}</p>;
+        return <p>{error}</p>;
     }
 
     if (categories.length === 0) {
-        return <p className="p-6 text-center text-gray-500">Категорий пока нет</p>;
+        return <p>Категорий пока нет</p>;
     }
+
+    const indexOfLastItem = currentPage * pageSize;
+    const indexOfFirstItem = indexOfLastItem - pageSize;
+    const currentItems = categories.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(categories.length / pageSize);
 
     return (
         <section>
-            <h1 className="mb-6 text-2xl font-bold text-gray-800">Все категории</h1>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {categories.map((category) => (
+            <h1>Все категории</h1>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+                {currentItems.map((category) => (
                     <Category key={category.id} category={category} />
                 ))}
+            </div>
+
+            <div style={{ marginTop: "20px", display: "flex", gap: "10px", alignItems: "center" }}>
+                <button
+                    onClick={() => setCurrentPage((prev) => prev - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Назад
+                </button>
+
+                <span>Страница {currentPage} из {totalPages}</span>
+
+                <button
+                    onClick={() => setCurrentPage((prev) => prev + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    Вперед
+                </button>
             </div>
         </section>
     );
