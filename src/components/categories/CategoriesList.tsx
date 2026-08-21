@@ -34,11 +34,19 @@ const CategoriesList = () => {
     }, []);
 
     if (isLoading) {
-        return <p>Загрузка категорий...</p>;
+        return (
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "40px" }}>
+                <p style={{ fontSize: "18px", color: "#666" }}>Загрузка категорий...</p>
+            </div>
+        );
     }
 
     if (error) {
-        return <p>{error}</p>;
+        return (
+            <div style={{ padding: "20px", textAlign: "center", color: "red" }}>
+                <p>{error}</p>
+            </div>
+        );
     }
 
     if (categories.length === 0) {
@@ -52,8 +60,8 @@ const CategoriesList = () => {
     const totalPages = Math.ceil(categories.length / pageSize);
 
     return (
-        <section>
-            <h1>Все категории</h1>
+        <section style={{ padding: "20px" }}>
+            <h1 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}>Все категории</h1>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
                 {currentItems.map((category) => (

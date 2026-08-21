@@ -1,8 +1,7 @@
 import { useContext } from "react";
-import { ProductsContext } from "../context/ProductsContext";
-import type { ProductsContextType } from "../context/ProductsContext";
+import { ProductsContext } from "../context/ProductsContext"; // Убедитесь, что импорт строго отсюда!
 
-export const useProducts = (): ProductsContextType => {
+export const useProducts = () => {
     const context = useContext(ProductsContext);
 
     if (!context) {

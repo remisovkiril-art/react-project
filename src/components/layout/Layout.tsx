@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Menu from "./Menu";
+import Header from "./Header";
 
 const Layout = () => {
     return (
-        <div>
-            <Menu />
-            <main>
+        <>
+            <Header />
+            <main className="mx-auto max-w-7xl px-6 py-8">
                 <Outlet />
             </main>
-        </div>
+        </>
     );
 };
 
