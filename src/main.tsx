@@ -12,18 +12,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 */}
 
 
+import React from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
-import { routes } from "./routes";
-import { ProductsProvider } from "./context/ProductsProvider";
-import { AuthProvider } from "./context/AuthProvider";
+import App from "./App";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <ProductsProvider>
-        <AuthProvider>
-            <RouterProvider router={routes} />
-        </AuthProvider>
-    </ProductsProvider>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );
 
