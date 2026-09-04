@@ -20,14 +20,28 @@ export const routes = createBrowserRouter([
                 path: "login",
                 lazy: () =>
                     import("./pages/Auth/Login").then(m => ({
-                        Component: m.Login
+                        Component: m.default
                     }))
             },
             {
                 path: "register",
                 lazy: () =>
                     import("./pages/Auth/Register").then(m => ({
-                        Component: m.Register
+                        Component: m.default
+                    }))
+            },
+            {
+                path: "order",
+                lazy: () =>
+                    import("./pages/Auth/Order").then(m => ({
+                        Component: m.default
+                    }))
+            },
+            {
+                path: "review",
+                lazy: () =>
+                    import("./pages/Auth/Review").then(m => ({
+                        Component: m.default
                     }))
             },
             {
