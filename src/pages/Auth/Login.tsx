@@ -38,13 +38,18 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { $api } from "../../api/axiosInstance";
 import { useAuth } from "../../context/AuthContext";
+import Modal from "../../components/modal/Modal";
 
 type LoginFormData = {
     email: string;
     password: string;
 };
 
-export default function Login() {
+interface LoginProps {
+    onClose?: () => void;
+}
+
+export default function Login({ onClose }: LoginProps) {
     const {
         register,
         handleSubmit,
@@ -53,6 +58,14 @@ export default function Login() {
 
     const { login } = useAuth();
     const navigate = useNavigate();
+
+    const closeModal = () => {
+        if (onClose) {
+            onClose();
+        } else {
+            navigate("/");
+        }
+    };
 
     const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
         try {
@@ -64,59 +77,61 @@ export default function Login() {
             const { token, refreshToken } = response.data;
 
             login(data.email, token, refreshToken);
-            navigate("/");
+            closeModal();
         } catch (error) {
             console.log(error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Авторизация</h2>
+        <Modal open={true} onClose={closeModal}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <h2>Авторизация</h2>
 
-            <label>
-                Email:
+                <label>
+                    Email:
+                    <br />
+                    <input
+                        type="email"
+                        {...register("email", {
+                            required: "Email is required",
+                        })}
+                    />
+                </label>
+
+                {errors.email && (
+                    <span>{errors.email.message}</span>
+                )}
+
                 <br />
-                <input
-                    type="email"
-                    {...register("email", {
-                        required: "Email is required",
-                    })}
-                />
-            </label>
-
-            {errors.email && (
-                <span>{errors.email.message}</span>
-            )}
-
-            <br />
-            <br />
-
-            <label>
-                Пароль:
                 <br />
-                <input
-                    type="password"
-                    {...register("password", {
-                        required: "Password is required",
-                        minLength: {
-                            value: 6,
-                            message: "Password must be at least 6 characters",
-                        },
-                    })}
-                />
-            </label>
 
-            {errors.password && (
-                <span>{errors.password.message}</span>
-            )}
+                <label>
+                    Пароль:
+                    <br />
+                    <input
+                        type="password"
+                        {...register("password", {
+                            required: "Password is required",
+                            minLength: {
+                                value: 6,
+                                message: "Password must be at least 6 characters",
+                            },
+                        })}
+                    />
+                </label>
 
-            <br />
-            <br />
+                {errors.password && (
+                    <span>{errors.password.message}</span>
+                )}
 
-            <button type="submit">
-                Войти
-            </button>
-        </form>
+                <br />
+                <br />
+
+                <button type="submit">
+                    Войти
+                </button>
+            </form>
+        </Modal>
     );
 }

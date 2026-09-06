@@ -46,10 +46,12 @@
 //         </form>
 //     );
 // };
+
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { $api } from "../../api/axiosInstance";
 import { useAuth } from "../../context/AuthContext";
+import Modal from "../../components/modal/Modal";
 
 type RegisterFormData = {
     email: string;
@@ -57,7 +59,11 @@ type RegisterFormData = {
     confirmPassword: string;
 };
 
-export default function Register() {
+interface RegisterProps {
+    onClose?: () => void;
+}
+
+export default function Register({ onClose }: RegisterProps) {
     const {
         register,
         handleSubmit,
@@ -70,6 +76,14 @@ export default function Register() {
 
     const password = watch("password");
 
+    const closeModal = () => {
+        if (onClose) {
+            onClose();
+        } else {
+            navigate("/");
+        }
+    };
+
     const onSubmit: SubmitHandler<RegisterFormData> = async (data) => {
         try {
             const response = await $api.post("Auth", {
@@ -80,82 +94,86 @@ export default function Register() {
             const { token, refreshToken } = response.data;
 
             login(data.email, token, refreshToken);
-            navigate("/");
+            closeModal();
         } catch (error) {
             console.log(error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Регистрация</h2>
+        <Modal open={true} onClose={closeModal}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <h2>Регистрация</h2>
 
-            <label>
-                Email:
+                <label>
+                    Email:
+                    <br />
+                    <input
+                        type="email"
+                        {...register("email", {
+                            required: "Email is required",
+                        })}
+                    />
+                </label>
+
+                {errors.email && (
+                    <span>{errors.email.message}</span>
+                )}
+
                 <br />
-                <input
-                    type="email"
-                    {...register("email", {
-                        required: "Email is required",
-                    })}
-                />
-            </label>
-
-            {errors.email && (
-                <span>{errors.email.message}</span>
-            )}
-
-            <br />
-            <br />
-
-            <label>
-                Пароль:
                 <br />
-                <input
-                    type="password"
-                    {...register("password", {
-                        required: "Password is required",
-                        minLength: {
-                            value: 6,
-                            message: "Password must be at least 6 characters",
-                        },
-                    })}
-                />
-            </label>
 
-            {errors.password && (
-                <span>{errors.password.message}</span>
-            )}
+                <label>
+                    Пароль:
+                    <br />
+                    <input
+                        type="password"
+                        {...register("password", {
+                            required: "Password is required",
+                            minLength: {
+                                value: 6,
+                                message: "Password must be at least 6 characters",
+                            },
+                        })}
+                    />
+                </label>
 
-            <br />
-            <br />
+                {errors.password && (
+                    <span>{errors.password.message}</span>
+                )}
 
-            <label>
-                Повторите пароль:
                 <br />
-                <input
-                    type="password"
-                    {...register("confirmPassword", {
-                        required: "Confirm password is required",
-                        validate: (value) =>
-                            value === password || "Passwords do not match",
-                    })}
-                />
-            </label>
+                <br />
 
-            {errors.confirmPassword && (
-                <span>{errors.confirmPassword.message}</span>
-            )}
+                <label>
+                    Повторите пароль:
+                    <br />
+                    <input
+                        type="password"
+                        {...register("confirmPassword", {
+                            required: "Confirm password is required",
+                            validate: (value) =>
+                                value === password || "Passwords do not match",
+                        })}
+                    />
+                </label>
 
-            <br />
-            <br />
+                {errors.confirmPassword && (
+                    <span>{errors.confirmPassword.message}</span>
+                )}
 
-            <button type="submit">
-                Зарегистрироваться
-            </button>
-        </form>
+                <br />
+                <br />
+
+                <button type="submit">
+                    Зарегистрироваться
+                </button>
+            </form>
+        </Modal>
     );
 }
+
+
 
 
 
