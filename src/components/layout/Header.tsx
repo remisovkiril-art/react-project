@@ -8,15 +8,15 @@ import Register from "../../pages/Auth/Register";
 const Header = () => {
     const { isAuth, userEmail, logout } = useAuth();
     const [authModal, setAuthModal] = useState<"login" | "register" | null>(null);
-
     const menu = [
         { title: "Home", path: "/" },
         { title: "Categories", path: "/categories" },
         { title: "Products", path: "/products" },
+        { title: "Create Category", path: "/create-category" },
+        { title: "Create Product", path: "/create-product" },
         { title: "About", path: "/about" },
         { title: "Contacts", path: "/contacts" }
-    ];
-
+        ];
     return (
         <>
             <header className="bg-slate-900 text-white shadow-lg">

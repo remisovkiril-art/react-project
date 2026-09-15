@@ -95,6 +95,20 @@ export const routes = createBrowserRouter([
                     import("./homework5/Homework5Page").then(m => ({
                         Component: m.default
                     }))
+            },
+            {
+                path: "create-category",
+                lazy: () =>
+                    import("./pages/CreateCategory").then(m => ({
+                        Component: m.default
+                    }))
+            },
+            {
+                path: "create-product",
+                lazy: () =>
+                    import("./pages/CreateProduct").then(m => ({
+                        Component: m.default
+                    }))
             }
         ]
     }
