@@ -19,97 +19,113 @@ export const routes = createBrowserRouter([
             {
                 path: "login",
                 lazy: () =>
-                    import("./pages/Auth/Login").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./pages/Auth/Login").then((m) => ({
+                        Component: m.default,
+                    })),
             },
             {
                 path: "register",
                 lazy: () =>
-                    import("./pages/Auth/Register").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./pages/Auth/Register").then((m) => ({
+                        Component: m.default,
+                    })),
             },
             {
                 path: "order",
                 lazy: () =>
-                    import("./pages/Auth/Order").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./pages/Auth/Order").then((m) => ({
+                        Component: m.default,
+                    })),
             },
             {
                 path: "review",
                 lazy: () =>
-                    import("./pages/Auth/Review").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./pages/Auth/Review").then((m) => ({
+                        Component: m.default,
+                    })),
             },
             {
                 index: true,
                 loader: categoriesLoader,
                 lazy: () =>
-                    import("./components/categories/CategoriesList").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./components/categories/CategoriesList").then(
+                        (m) => ({
+                            Component: m.default,
+                        })
+                    ),
             },
             {
                 path: "categories",
                 loader: categoriesLoader,
                 lazy: () =>
-                    import("./components/categories/CategoriesList").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./components/categories/CategoriesList").then(
+                        (m) => ({
+                            Component: m.default,
+                        })
+                    ),
             },
             {
                 path: "products",
                 loader: productsLoader,
                 lazy: () =>
-                    import("./components/product/ProductsPage").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./components/product/ProductsPage").then(
+                        (m) => ({
+                            Component: m.default,
+                        })
+                    ),
             },
             {
                 path: "about",
                 lazy: () =>
-                    import("./pages/About").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./pages/About").then((m) => ({
+                        Component: m.default,
+                    })),
             },
             {
                 path: "contacts",
                 lazy: () =>
-                    import("./components/contacts/Contacts").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./components/contacts/Contacts").then((m) => ({
+                        Component: m.default,
+                    })),
             },
             {
                 path: "categories/:id",
                 lazy: () =>
-                    import("./components/categories/CategoryPage").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./components/categories/CategoryPage").then(
+                        (m) => ({
+                            Component: m.default,
+                        })
+                    ),
             },
             {
                 path: "homework5",
                 lazy: () =>
-                    import("./homework5/Homework5Page").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./homework5/Homework5Page").then((m) => ({
+                        Component: m.default,
+                    })),
             },
             {
                 path: "create-category",
                 lazy: () =>
-                    import("./pages/CreateCategory").then(m => ({
-                        Component: m.default
-                    }))
+                    import("./pages/CreateCategory").then((m) => ({
+                        Component: m.default,
+                    })),
             },
             {
                 path: "create-product",
                 lazy: () =>
-                    import("./pages/CreateProduct").then(m => ({
-                        Component: m.default
-                    }))
-            }
-        ]
-    }
+                    import("./pages/CreateProduct").then((m) => ({
+                        Component: m.default,
+                    })),
+            },
+            {
+                path: "cart",
+                lazy: () =>
+                    import("./pages/Cart").then((m) => ({
+                        Component: m.default,
+                    })),
+            },
+        ],
+    },
 ]);
+

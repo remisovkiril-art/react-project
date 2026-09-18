@@ -1,13 +1,28 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Search from "../../pages/Search.tsx";
 import { useAuth } from "../../context/AuthContext";
 import Login from "../../pages/Auth/Login";
 import Register from "../../pages/Auth/Register";
+import type { RootState } from "../../redux/store";
 
 const Header = () => {
     const { isAuth, userEmail, logout } = useAuth();
-    const [authModal, setAuthModal] = useState<"login" | "register" | null>(null);
+
+    const [authModal, setAuthModal] = useState<
+        "login" | "register" | null
+    >(null);
+
+    const cartItems = useSelector(
+        (state: RootState) => state.cart.items
+    );
+
+    const cartQuantity = cartItems.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
+
     const menu = [
         { title: "Home", path: "/" },
         { title: "Categories", path: "/categories" },
@@ -15,8 +30,9 @@ const Header = () => {
         { title: "Create Category", path: "/create-category" },
         { title: "Create Product", path: "/create-product" },
         { title: "About", path: "/about" },
-        { title: "Contacts", path: "/contacts" }
-        ];
+        { title: "Contacts", path: "/contacts" },
+    ];
+
     return (
         <>
             <header className="bg-slate-900 text-white shadow-lg">
@@ -29,16 +45,12 @@ const Header = () => {
                     </NavLink>
 
                     <nav className="flex gap-6">
-                        {menu.map(item => (
+                        {menu.map((item) => (
                             <NavLink
                                 key={item.path}
                                 to={item.path}
                                 className={({ isActive }) =>
-                                    `transition hover:text-blue-400 ${
-                                        isActive
-                                            ? "text-blue-400"
-                                            : "text-white"
-                                    }`
+                                    `transition hover:text-blue-400 ${isActive ? "text-blue-400" : "text-white"}`
                                 }
                             >
                                 {item.title}
@@ -76,7 +88,9 @@ const Header = () => {
 
                                 <button
                                     type="button"
-                                    onClick={() => setAuthModal("register")}
+                                    onClick={() =>
+                                        setAuthModal("register")
+                                    }
                                     className="hover:text-blue-400"
                                 >
                                     Register
@@ -84,16 +98,19 @@ const Header = () => {
                             </div>
                         )}
 
-                        <button>❤️</button>
+                        <button type="button">❤️</button>
 
-                        <button className="relative">
+                        <Link to="/cart" className="relative">
                             🛒
-                            <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs">
-                                3
-                            </span>
-                        </button>
 
-                        <button>👤</button>
+                            {cartQuantity > 0 && (
+                                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs">
+                                    {cartQuantity}
+                                </span>
+                            )}
+                        </Link>
+
+                        <button type="button">👤</button>
                     </div>
                 </div>
             </header>
